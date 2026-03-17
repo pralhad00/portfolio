@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0F1419;
+  --color-accent: #38BDF8;
+  --color-text: #FAFAF9;
+  
+  --font-sans: "Manrope", system-ui, -apple-system, sans-serif;
+  --font-lato: "Lato", sans-serif;
+  --font-noto: "Noto Sans", sans-serif;
+  --font-pixelify: "Pixelify Sans", sans-serif;
+}
+
+body {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  overflow-x: hidden;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px'><text y='24'>🥕</text></svg>") 16 16, auto;
+}
+
+a, button, [role="button"], .cursor-pointer {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:24px'><text y='24'>🥕</text></svg>") 16 16, pointer !important;
+}
+
+/* Spotlight effect */
+.spotlight {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
+    rgba(255, 255, 255, 0.03),
+    transparent 40%
+  );
+  will-change: background;
+}
+
+/* Hover glow for desktop only */
+@media (min-width: 768px) {
+  .hover-glow:hover {
+    text-shadow: 0px 0px 20px rgba(255,255,255,0.8), 0px 0px 40px rgba(56,189,248,0.6);
+  }
+}
+
+/* Performance Optimizations */
+@media (max-width: 768px) {
+  .spotlight {
+    display: none; /* Disable heavy radial gradient on mobile */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
